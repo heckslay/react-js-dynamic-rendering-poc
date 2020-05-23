@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import DynamicComponent from './Components/DynamicComponent/DynamicComponent';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    inputs: [
+      {
+        "id": 413,
+        "inputType": "TextArea",
+        "value": "12"
+      },
+      {
+        "id": 415,
+        "inputType": "TextField",
+        "value": "300 არაგველის ქუჩა, ახმეტა, ახმეტის მუნიციპალიტეტი, კახეთი"
+      }
+    ]
+  };
+
+  render() {
+    const inputs = this.state.inputs;
+    return (
+      <div className="App">
+        {
+          inputs.map((input, index) => {
+            return  <DynamicComponent key={input.id} inputType={input.inputType} inputValue={input.value}></DynamicComponent>;
+          })
+        }
+      </div>
+    )
+  };
 }
 
 export default App;
